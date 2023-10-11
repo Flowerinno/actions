@@ -1,0 +1,26 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  echo:
+    name: Echo Hello World
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        uses: actions/upload-artifact@v2
+        run: echo "Hello World" > file.txt
+        with:
+          name: file
+          path: file.txt
+  download:
+    name: Download the artifact
+    needs: echo
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: Download File
+      - run: cat file.txt
