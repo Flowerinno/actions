@@ -9,9 +9,8 @@ jobs:
     name: Echo Hello World
     runs-on: ubuntu-latest
     steps:
-      - name: Echo
-        uses: actions/upload-artifact@v2
-        run: echo "Hello World" > file.txt
+      - run: echo "Hello World" > file.txt
+      - uses: actions/upload-artifact@v2
         with:
           name: file
           path: file.txt
